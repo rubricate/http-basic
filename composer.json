@@ -1,0 +1,15 @@
+{
+    "name": "rubricate/http",
+    "authors": [
+        {
+            "name": "Estefanio NS",
+            "email": "estefanions@gmail.com"
+        }
+    ],
+
+    "autoload": {
+        "psr-4": {
+            "Rubricate\\Http\\": "Rubricate/Http/"
+        }
+    }
+}

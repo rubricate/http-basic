@@ -13,7 +13,7 @@ namespace Rubricate\Http;
 
 
 
-class Request
+class RequestHttp
 {
 
 

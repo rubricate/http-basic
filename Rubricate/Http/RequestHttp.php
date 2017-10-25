@@ -74,7 +74,7 @@ class RequestHttp
 
 
 
-    public function cookies($key = NULL, $default = NULL)
+    public function cookie($key = NULL, $default = NULL)
     {
        return 
            (func_num_args() === 0)?

@@ -13,7 +13,7 @@ namespace Rubricate\Http;
 
 
 
-class RequestHttp
+class RequestHttp implements IRequestHttp
 {
 
 

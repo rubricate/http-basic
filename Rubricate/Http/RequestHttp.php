@@ -20,9 +20,9 @@ class RequestHttp implements IRequestHttp
 
 
 
-    public function get($key = NULL, $default = NULL)
+    public function get($key = null, $default = null)
     {
-       return 
+        return 
            (func_num_args() === 0)?
            $_GET: self::arr($_GET, $key, $default);
     } 
@@ -34,9 +34,9 @@ class RequestHttp implements IRequestHttp
 
 
 
-    public function post($key = NULL, $default = NULL)
+    public function post($key = null, $default = null)
     {
-       return 
+        return 
            (func_num_args() === 0)?
            $_POST: self::arr($_POST, $key, $default);
     } 
@@ -47,9 +47,9 @@ class RequestHttp implements IRequestHttp
 
 
 
-    public function files($key = NULL, $default = NULL)
+    public function files($key = null, $default = null)
     {
-       return 
+        return 
            (func_num_args() === 0)?
            $_FILES: self::arr($_FILES, $key, $default);
     } 
@@ -60,10 +60,10 @@ class RequestHttp implements IRequestHttp
 
 
 
-    public function server($key = NULL, $default = NULL)
+    public function server($key = null, $default = null)
     {
         $key = ucwords($key);
-       return 
+        return 
            (func_num_args() === 0)?
            $_SERVER: self::arr($_SERVER, $key, $default);
     } 
@@ -74,9 +74,9 @@ class RequestHttp implements IRequestHttp
 
 
 
-    public function cookie($key = NULL, $default = NULL)
+    public function cookie($key = null, $default = null)
     {
-       return 
+        return 
            (func_num_args() === 0)?
            $_COOKIE: self::arr($_COOKIE, $key, $default);
     } 

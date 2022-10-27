@@ -1,15 +1,15 @@
 {
-    "name": "rubricate/http",
+    "name": "rubricate/http-basic",
     "authors": [
         {
-            "name": "Estefanio NS",
+            "name": "Estefanio N Santos",
             "email": "estefanions@gmail.com"
         }
     ],
 
     "autoload": {
         "psr-4": {
-            "Rubricate\\Http\\": "Rubricate/Http/"
+            "Rubricate\\HttpBasic\\": "Rubricate/HttpBasic/"
         }
     }
 }

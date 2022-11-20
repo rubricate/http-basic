@@ -11,5 +11,8 @@
         "psr-4": {
             "Rubricate\\HttpBasic\\": "Rubricate/HttpBasic/"
         }
+    },
+    "require": {
+        "rubricate/arr": "^0.1.0"
     }
 }

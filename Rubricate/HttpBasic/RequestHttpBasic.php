@@ -2,47 +2,61 @@
 
 namespace Rubricate\HttpBasic;
 
+use Rubricate\Arr\StemArr;
+
 class RequestHttpBasic implements IRequestHttpBasic
 {
+    private $arr;
+
+    public function __construct()
+    {
+        $this->arr = new StemArr();
+    }
+
     public function get($key = null, $default = null)
     {
-        return 
-           (func_num_args() === 0)?
-           $_GET: self::arr($_GET, $key, $default);
-    } 
+        if(func_num_args() === 0){
+            return $_GET;
+        }
+
+        return $this->arr->get($_GET, $key, $default);
+    }
 
     public function post($key = null, $default = null)
     {
-        return 
-           (func_num_args() === 0)?
-           $_POST: self::arr($_POST, $key, $default);
-    } 
+        if(func_num_args() === 0){
+            return $_POST;
+        }
+
+        return $this->arr->get($_POST, $key, $default);
+    }
 
     public function files($key = null, $default = null)
     {
-        return 
-           (func_num_args() === 0)?
-           $_FILES: self::arr($_FILES, $key, $default);
-    } 
+        if(func_num_args() === 0){
+            return $_FILES;
+        }
+
+        return $this->arr->get($_FILES, $key, $default);
+    }
 
     public function server($key = null, $default = null)
     {
-        $key = ucwords($key);
-        return 
-           (func_num_args() === 0)?
-           $_SERVER: self::arr($_SERVER, $key, $default);
-    } 
+        if(func_num_args() === 0){
+            return $_SERVER;
+        }
+
+        return $this->arr->get($_SERVER, strtoupper((string) $key), $default);
+    }
 
     public function cookie($key = null, $default = null)
     {
-        return 
-           (func_num_args() === 0)?
-           $_COOKIE: self::arr($_COOKIE, $key, $default);
-    } 
+        if(func_num_args() === 0){
+            return $_COOKIE;
+        }
 
-    private function arr($arr, $key, $default)
-    {
-        return (!array_key_exists($key, $arr))? $default: $arr[$key];
-    } 
+        return $this->arr->get($_COOKIE, $key, $default);
+    }
+
 }    
 

@@ -1,0 +1,5 @@
+*.vim
+tags
+main.php
+vendor/
+composer.lock

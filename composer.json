@@ -13,6 +13,7 @@
         }
     },
     "require": {
+        "php": ">=5.4",
         "rubricate/arr": "^0.1.0"
     }
 }

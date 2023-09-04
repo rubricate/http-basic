@@ -1,12 +1,12 @@
 {
     "name": "rubricate/http-basic",
+    "license": "MIT",
     "authors": [
         {
             "name": "Estefanio N Santos",
             "email": "estefanions@gmail.com"
         }
     ],
-
     "autoload": {
         "psr-4": {
             "Rubricate\\HttpBasic\\": "Rubricate/HttpBasic/"
@@ -14,6 +14,6 @@
     },
     "require": {
         "php": ">=5.4",
-        "rubricate/arr": "^0.1.0"
+            "rubricate/arr": "^1.0"
     }
 }

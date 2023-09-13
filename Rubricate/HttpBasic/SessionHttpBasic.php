@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Rubricate\HttpBasic;
 
 use Rubricate\Arr\StemArr;
@@ -13,17 +15,17 @@ class SessionHttpBasic
         $this->arr = new StemArr();
     }
 
-    public function cacheLimiter($limiter = null)
+    public function cacheLimiter($limiter = null): ?string
     {
         return session_cache_limiter($limiter);
     }
 
-    public function cacheExpire($num = null)
+    public function cacheExpire($num = null): ?int
     {
         return session_cache_expire($num);
     }
 
-    public function start($optionArr = [])
+    public function start($optionArr = []): object
     {
         if(!self::id()) {
             session_start($optionArr);
@@ -32,7 +34,7 @@ class SessionHttpBasic
         return $this;
     }
 
-    public function destroy() 
+    public function destroy(): object
     {
         session_unset();
         session_destroy();
@@ -40,18 +42,18 @@ class SessionHttpBasic
         return $this;
     }
 
-    public function set($key, $value)
+    public function set($key, $value): object
     {
         $_SESSION[$key] = $value;
         return $this;
     }
 
-    public function get($key, $default = '') 
+    public function get($key) 
     {
         return $this->arr->get($_SESSION, $key);
     }
 
-    public function del($key) 
+    public function del($key): bool
     {
         if(!$this->is($key)) {
             return false;
@@ -61,17 +63,17 @@ class SessionHttpBasic
         return true;
     }
 
-    public function id() 
+    public function id(): ?string
     {
         return session_id();
     }
 
-    public function all()
+    public function all(): array
     {
         return $_SESSION;
     }
 
-    public function is($key) 
+    public function is($key): bool 
     {
         return (!empty(self::get($key)));
     }

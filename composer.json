@@ -13,7 +13,7 @@
         }
     },
     "require": {
-        "php": ">=7.2",
-            "rubricate/arr": "^2.2"
+        "php": ">=8.0",
+            "rubricate/arr": "^3.0"
     }
 }

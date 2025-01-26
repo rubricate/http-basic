@@ -6,65 +6,71 @@ namespace Rubricate\HttpBasic;
 
 use Rubricate\Arr\StemArr;
 
-class SessionHttpBasic
+class SessionHttpBasic implements ISessionHttpBasic
 {
-    private $arr;
+    private StemArr $arr;
 
     public function __construct()
     {
         $this->arr = new StemArr();
     }
 
-    public function cacheLimiter($limiter = null): ?string
+    public function cacheLimiter(?string $limiter = null): string|false
     {
         return session_cache_limiter($limiter);
     }
 
-    public function cacheExpire($num = null): ?int
+    public function cacheExpire(?int $num = null): int|false
     {
         return session_cache_expire($num);
     }
 
-    public function start($optionArr = []): object
+    public function start(array $option = []): bool
     {
-        if(!self::id()) {
-            session_start($optionArr);
+        if (session_status() === PHP_SESSION_NONE) {
+            return session_start($option);
         }
 
-        return $this;
+        return false;
     }
 
-    public function destroy(): object
+    public function destroy(): bool
     {
-        session_unset();
-        session_destroy();
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            session_unset();
+            return session_destroy();
+        }
 
-        return $this;
+        return false;
     }
 
-    public function set($key, $value): object
+    public function set(string $key, mixed $value): self
     {
         $_SESSION[$key] = $value;
         return $this;
     }
 
-    public function get($key) 
+    public function get(string $key): mixed
     {
         return $this->arr->get($_SESSION, $key);
     }
 
-    public function del($key): bool
+    public function del(string $key): bool
     {
-        if(!$this->is($key)) {
-            return false;
+        if($this->has($key)) {
+            unset($_SESSION[$key]);
+            return true;
         }
 
-        unset($_SESSION[$key]);
-        return true;
+        return false;
     }
 
-    public function id(): ?string
+    public function id(?string $id = null): string|false
     {
+        if ($id !== null) {
+            return session_id($id);
+        }
+
         return session_id();
     }
 
@@ -73,10 +79,9 @@ class SessionHttpBasic
         return $_SESSION;
     }
 
-    public function is($key): bool 
+    public function has(string $key): bool
     {
         return (!empty(self::get($key)));
     }
-
 }
 

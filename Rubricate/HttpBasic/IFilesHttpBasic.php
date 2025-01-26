@@ -4,6 +4,6 @@ namespace Rubricate\HttpBasic;
 
 interface IFilesHttpBasic
 {
-    public function files($key, $default);
+    public function files(?string $key, mixed $default = null): mixed;
 }
 

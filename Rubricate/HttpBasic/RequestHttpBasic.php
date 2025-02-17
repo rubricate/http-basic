@@ -42,7 +42,7 @@ class RequestHttpBasic implements IRequestHttpBasic
 
     private function arr(array $arr, ?string $key, mixed $default = null): mixed
     {
-        return($key === null)? $arr: $this->arr->get($type, $key, $default);
+        return($key === null)? $arr: $this->arr->get($arr, $key, $default);
     }
 
 }    
